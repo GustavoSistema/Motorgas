@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 
 class ServiciosImportados extends Component
 {
+    
     public $servicioId;
     public $placa;
     public $serie;
