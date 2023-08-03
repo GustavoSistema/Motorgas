@@ -24,27 +24,67 @@ class ServiciosImportados extends Component
     public $modalTitle = '';
     public $searchTerm;
     public $editing = false;
-    public $perPage=12;
+    public $showEditModal = false;
+    public $perPage;
     
 
+    protected $rules = [
+        'placa' => 'required',
+        'serie' => 'required',
+        'certificador' => 'required',
+        'taller' => 'required',
+        'precio' => 'required',
+        'fecha' => 'required',
+        'externo' => 'required',
+        'tipoServicio' => 'required',
+        'estado' => 'required',
+        'pagado' => 'required',
+    ];
+    
 
-    public function render()
-{
-    $serviciosImportados = Importados::where(function ($query) {
-        $query->where('placa', 'like', '%' . $this->searchTerm . '%')
-            ->orWhere('certificador', 'like', '%' . $this->searchTerm . '%')
-            ->orWhere('taller', 'like', '%' . $this->searchTerm . '%');
-    })->paginate($this->perPage);
-
-    return view('livewire.servicios_importados', compact('serviciosImportados'));
-}
- 
-
-    public function edit()
-    {        
-        return redirect()->route('edit_servicio');
-         
+        public function render()
+    {
+        $serviciosImportados = Importados::all();
+        return view('livewire.servicios_importados', [
+            'serviciosImportados' => $serviciosImportados
+        ]);
     }
+ 
+        public function mount()
+    {
+        $this->editing = false;
+    }
+
+
+    public function showEditModal($id)
+    {
+        $this->editing = true;
+        $servicio = Importados::find($id);
+        if ($servicio) {
+            $this->servicioId = $servicio->id;
+            $this->placa = $servicio->placa;
+            $this->serie = $servicio->serie;
+            $this->certificador = $servicio->certificador;
+            $this->taller = $servicio->taller;
+            $this->precio = $servicio->precio;
+            $this->fecha = $servicio->fecha;
+            $this->externo = $servicio->externo;
+            $this->tipoServicio = $servicio->tipoServicio;
+            $this->estado = $servicio->estado;
+            $this->pagado = $servicio->pagado;
+
+            $this->showEditModal = true;
+        }
+    }
+
+    public function closeEditModal()
+    {
+        $this->editing = false;
+        $this->resetForm();
+        $this->showEditModal = false;
+        $this->resetValidation();
+    }
+
 
     public function save()
     {
@@ -79,7 +119,20 @@ class ServiciosImportados extends Component
             }
             $this->editing = false; 
         } else {
+            Importados::create([
+                'placa' => $this->placa,
+                'serie' => $this->serie,
+                'certificador' => $this->certificador,
+                'taller' => $this->taller,
+                'precio' => $this->precio,
+                'fecha' => $this->fecha,
+                'externo' => $this->externo,
+                'tipoServicio' => $this->tipoServicio,
+                'estado' => $this->estado,
+                'pagado' => $this->pagado,
+            ]);
         }
+
         $this->resetForm();
         $this->closeModal();
     }
@@ -116,6 +169,8 @@ class ServiciosImportados extends Component
                 'pagado' => $this->pagado,
             ]);
             $this->resetForm();
+            
+            $this->showEditModal = false;
         }
     }
 
@@ -127,22 +182,12 @@ class ServiciosImportados extends Component
     public function view($id)
     {
         $servicio = Importados::find($id);
-    if (isset($servicio->id)) {
-            $this->servicioId = $servicio->id;
-            $this->placa = $servicio->placa;
-            $this->serie = $servicio->serie;
-            $this->certificador = $servicio->certificador;
-            $this->taller = $servicio->taller;
-            $this->precio = $servicio->precio;
-            $this->fecha = $servicio->fecha;
-            $this->externo = $servicio->externo;
-            $this->tipoServicio = $servicio->tipoServicio;
-            $this->estado = $servicio->estado;
-            $this->pagado = $servicio->pagado;
-    
+        if ($servicio) {
+            $this->modalData = $servicio->toArray();
+            $this->modalTitle = 'Detalles del Servicio';
             $this->showModal = true;
-        }   
-     }
+        }
+    }
 
     public function resetForm()
     {
@@ -160,23 +205,11 @@ class ServiciosImportados extends Component
     }
 
 
-    public function openModal($id,$title)
+    public function openModal($id, $title)
     {
         $servicio = Importados::find($id);
         if ($servicio) {
-            $this->modalData = [
-                'id' => $servicio->id,
-                'placa' => $servicio->placa,
-                'serie' => $servicio->serie,
-                'certificador' => $servicio->certificador,
-                'taller' => $servicio->taller,
-                'precio' => $servicio->precio,
-                'fecha' => $servicio->fecha,
-                'externo' => $servicio->externo,
-                'tipoServicio' => $servicio->tipoServicio,
-                'estado' => $servicio->estado,
-                'pagado' => $servicio->pagado,
-            ];
+            $this->modalData = $servicio->toArray();
             $this->modalTitle = $title;
             $this->showModal = true;
         }
@@ -186,6 +219,7 @@ class ServiciosImportados extends Component
     public function closeModal()
     {
         $this->showModal = false;
+        $this->resetValidation();
     }
 
 
