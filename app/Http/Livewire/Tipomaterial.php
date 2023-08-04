@@ -70,7 +70,13 @@ class TipoMaterial extends Component
         $this->resetForm();
         $this->loadData();
     }
-    
+
+    public function closeEditModal()
+    {
+        $this->editing = false;
+        $this->resetForm();
+        $this->resetValidation();
+    }
 
 
 

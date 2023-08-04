@@ -15,47 +15,64 @@
             Crear Nuevo
             </button>
             <div class="ml-2"></div>
-       </div>
+            </div>
 
 
-       <div class="col-md-6 text-right">
-       <div class="row mb-4">
-        <div class="col-md-6 offset-md-6">
+            <div class="col-md-6 text-right">
+            <div class="row mb-4">
+            <div class="col-md-6 offset-md-6">
             <div class="input-group">
                 <input type="text" wire:model="search" class="form-control border border-purple-500 focus:border-purple-700 rounded-md shadow-md" placeholder="Buscar...">
                 <div class="input-group-append">
                     <button wire:click="clearSearch" class="btn btn-outline-secondary" type="button"></button>
                 </div>
             </div>
-        </div>
-       </div>
-      </div>
+            </div>
+            </div>
+            </div>
        
-    </div>      
+     </div>   
+    </div>     
             
     
 
     @if ($editing)
-        <form wire:submit.prevent="{{ $tipoMaterialId ? 'update' : 'create' }}">
-            <div class="mb-4">
-                <label for="descripcion" class="block">Descripción:</label>
-                <input type="text" wire:model="descripcion" id="descripcion" class="form-control border border-purple-500 focus:border-purple-700 rounded-md shadow-md" placeholder="Descripción" required>
-                    @error('descripcion')
-                   <div class="text-red-600">{{ $message }}</div>
-                    @enderror
-            </div>
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Fomato</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeEditModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form wire:submit.prevent="{{ $tipoMaterialId ? 'update' : 'create' }}">
+                    <div class="mb-4">
+                        <label for="descripcion" class="block">Descripción:</label>
+                        <input type="text" wire:model="descripcion" id="descripcion" class="form-control border border-purple-500 focus:border-purple-700 rounded-md shadow-md" placeholder="Descripción" required>
+                        @error('descripcion')
+                        <div class="text-red-600">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div>
+                        <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-md shadow-md">
+                            {{ $tipoMaterialId ? 'Actualizar' : 'Crear' }}
+                        </button>
 
-            <div>
-                <button type="submit" class="bg-indigo-500 text-white py-2 px-4 rounded-md shadow-md">
-                     {{ $tipoMaterialId ? 'Actualizar' : 'Crear' }}
-                </button>
-                <button wire:click="resetForm" type="button" class="bg-gray-300 text-gray-600 py-2 px-4 rounded-md shadow-md ml-2">
-                    Cancelar
-                </button>
-            </div>
-        </form>
-
+                        <button wire:click="resetForm" type="button" class="bg-gray-300 text-gray-600 py-2 px-4 rounded-md shadow-md ml-2">
+                        Cancelar
+                        </button>
+                    </div>
+                </form>
+                </div>
+          </div>
+        </div>
+    </div>
     @endif
+
+
+
 
 
     <table class="mt-4 w-full border-collapse">
@@ -88,12 +105,12 @@
                         </tr>
                     
                 @endforeach
-            @else
+             @else
                 <tr>
                     <td colspan="3" class="border px-4 py-2 text-center">No hay materiales disponibles</td>
                 </tr>
-            @endif
-            @else
+             @endif
+             @else
                 <tr>
                     
                     <td colspan="3" class="border px-4 py-2 text-center">No se encontraron los registros.</td>
