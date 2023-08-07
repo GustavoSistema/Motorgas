@@ -1,3 +1,4 @@
+
 <div class="card">
     <div class="card-header bg-indigo-500 text-white text-center">
         <h4 class="mb-0">Registro de servicios Importados</h4>
@@ -61,8 +62,9 @@
                               </div>
                             </td>
                         </tr>                    
-                @endforeach                 
-            @endif
+                @endforeach   
+                               
+              @endif
             @else
                     <tr>                                
                         <td colspan="8" class="border px-4 py-2 text-center {{ $foundRecords ? '' : 'align-middle' }}">No se encontraron los registros.</td>
@@ -70,6 +72,7 @@
             @endif            
         </tbody>
     </table>
+                            
     </div>
     
 

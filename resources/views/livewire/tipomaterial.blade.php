@@ -1,3 +1,4 @@
+
 <div>
 
     <div class="row mb-5">
@@ -8,14 +9,12 @@
 
 
 
-        <div class="row mb-5">           
-            <!-- Botón para crear un nuevo formato -->
-            <div class="col-md-6 d-flex justify-content-between">
-            <button wire:click="create" class="bg-indigo-500 text-white py-2 px-4 rounded-md shadow-md">
-            Crear Nuevo
-            </button>
-            <div class="ml-2"></div>
-            </div>
+        
+        <div class="card-footer">
+            <div class="row justify-content-between">
+                <div class="col-md-6">
+                    @livewire('crearformato')
+                </div>
 
 
             <div class="col-md-6 text-right">
@@ -24,14 +23,15 @@
             <div class="input-group">
                 <input type="text" wire:model="search" class="form-control border border-purple-500 focus:border-purple-700 rounded-md shadow-md" placeholder="Buscar...">
                 <div class="input-group-append">
-                    <button wire:click="clearSearch" class="btn btn-outline-secondary" type="button"></button>
+                    <button wire:click="clearSearch" class="btn btn-outline-secondary" type="button">Limpiar</button>
                 </div>
             </div>
             </div>
             </div>
             </div>
        
-     </div>   
+            </div>   
+        </div>  
     </div>     
             
     
@@ -69,8 +69,10 @@
           </div>
         </div>
     </div>
+
     @endif
 
+    
 
 
 
@@ -105,10 +107,6 @@
                         </tr>
                     
                 @endforeach
-             @else
-                <tr>
-                    <td colspan="3" class="border px-4 py-2 text-center">No hay materiales disponibles</td>
-                </tr>
              @endif
              @else
                 <tr>
@@ -117,5 +115,5 @@
                 </tr>
             @endif
         </tbody>
-    </table>
+    </table>      
 </div>

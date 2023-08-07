@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 use App\Models\Importados;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Pagination\Paginator;
 use Carbon\Carbon;
 
 class ServiciosImportados extends Component
@@ -30,15 +31,6 @@ class ServiciosImportados extends Component
     public $isViewing = false;
     public $modalTitle = '';
     public $modalData = null;
-
-
-    //public $showModal = false;
-    //public $modalData = [];    
-    //public $modalTitle = '';
-    //public $searchTerm;
-    //public $editing = false;
-    //public $showEditModal = false;
-    //public $perPage;
     
 
     public function render()
@@ -46,7 +38,16 @@ class ServiciosImportados extends Component
         $tipoMaterialList = Importados::all();
         return view('livewire.servicios_importados', compact( 'tipoMaterialList' ));
     }
+    /*public function render()
+    {
+        $tipoMaterialList = Importados::where('placa', 'like', '%' . $this->search . '%')
+            ->orWhere('serie', 'like', '%' . $this->search . '%')
+            ->orWhere('certificador', 'like', '%' . $this->search . '%')
+            ->orWhere('taller', 'like', '%' . $this->search . '%')
+            ->paginate(10);
 
+        return view('livewire.servicios_importados', compact('tipoMaterialList'));
+    }*/
     public function mount()
     {
         $this->loadData();
@@ -208,22 +209,6 @@ class ServiciosImportados extends Component
         $this->servicioId = null;
     }
 
-    /*public function view($id)
-    {
-    $servicio = Importados::findOrFail($id);
-    $this->servicioId = $servicio->id;
-    $this->placa = $servicio->placa;
-    $this->serie = $servicio->serie;
-    $this->certificador = $servicio->certificador;
-    $this->taller = $servicio->taller;
-    $this->precio = $servicio->precio;
-    $this->fecha = $servicio->fecha;
-    $this->externo = $servicio->externo;
-    $this->tipoServicio = $servicio->tipoServicio;
-    $this->estado = $servicio->estado;
-    $this->pagado = $servicio->pagado;
-    }*/
-
     public function openViewModal($servicioId)
     {
         $this->modalTitle = 'Detalles del Servicio';
@@ -247,6 +232,7 @@ class ServiciosImportados extends Component
               ->orWhere('certificador', 'LIKE', '%' . $this->search . '%')
               ->orWhere('taller', 'LIKE', '%' . $this->search . '%');
     })->get();
+
     $this->foundRecords = count($this->tipoMaterialList) > 0;
     }
 

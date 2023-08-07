@@ -21,16 +21,18 @@ class TipoMaterial extends Component
         return view('livewire.tipomaterial', compact('tipoMaterialList'));
     }
 
+
     public function mount()
     {
         $this->loadData();
     }
 
+
     public function loadData()
     {
-        // Carga la lista de materiales desde la base de datos
         $this->tipoMaterialList = Material::all();
     }
+
 
     public function create()
     {
@@ -38,7 +40,7 @@ class TipoMaterial extends Component
         $this->tipoMaterialId = null;
         $this->descripcion = null;
 
-        $this->updateOrCreate();         
+        $this->updateOrCreate();   
     }
 
 
@@ -50,26 +52,22 @@ class TipoMaterial extends Component
 
 
         if ($this->tipoMaterialId) {
-            // Estamos en modo de edición, actualiza el material existente en la base de datos
             $tipoMaterial = Material::find($this->tipoMaterialId);
             if ($tipoMaterial) {
-                // Actualiza los campos del material
                 $tipoMaterial->descripcion = $this->descripcion;
-                // Aquí puedes agregar otros campos que necesites actualizar
                 $tipoMaterial->save();
             }
         } else {
-            // Estamos en modo de creación, crea un nuevo material en la base de datos
             Material::create([
                 'descripcion' => $this->descripcion,
-                // Aquí puedes agregar otros campos que necesites guardar
             ]);
         }
-
-        // Después de crear o actualizar, restablece el formulario y recarga la lista de materiales
         $this->resetForm();
         $this->loadData();
     }
+
+
+
 
     public function closeEditModal()
     {
@@ -138,5 +136,6 @@ public function updatingSearch()
         $this->foundRecords = true;
     }
 
+    
 
 }
