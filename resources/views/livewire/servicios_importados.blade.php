@@ -1,3 +1,5 @@
+@extends('dashboard')
+@section('content')
 
 <div class="card">
     <div class="card-header bg-indigo-500 text-white text-center">
@@ -226,3 +228,4 @@
         @endif
 
 </div>
+@endsection

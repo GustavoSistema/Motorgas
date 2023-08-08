@@ -26,7 +26,7 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+            @livewire('menu-component')
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -43,12 +43,23 @@
             </main>
         </div>
 
+        
+
+
         @stack('modals')
 
         @livewireScripts
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+        <!-- Otros encabezados y estilos aquí -->
+
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.3.0/dist/alpine.min.js" defer></script>
+
+        
+        
+
 
     </body>
 </html>
