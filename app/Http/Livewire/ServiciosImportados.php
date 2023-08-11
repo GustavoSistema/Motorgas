@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 use App\Models\Importados;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Pagination\Paginator;
 use Carbon\Carbon;
 
 class ServiciosImportados extends Component
@@ -22,7 +21,7 @@ class ServiciosImportados extends Component
     public $estado;
     public $pagado;
     public $editing = false;
-    public $tipoMaterialList = [];
+   // public $tipoMaterialList = [];
     public $search = '';    
     public $foundRecords = true;
 
@@ -35,8 +34,17 @@ class ServiciosImportados extends Component
 
     public function render()
     {
-        $tipoMaterialList = Importados::all();
+        //$tipoMaterialList = Importados::where("id","!=",1)->orderBy('id','desc')->paginate(10);
+        //dd($tipoMaterialList);
+        $tipoMaterialList = Importados::where(function ($query) {
+            $query->where('placa', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('serie', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('certificador', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('taller', 'LIKE', '%' . $this->search . '%');
+        })->paginate(10);
+       // dd(count($tipoMaterialList));
         return view('livewire.servicios_importados', compact( 'tipoMaterialList' ));
+
     }
     /*public function render()
     {
@@ -50,13 +58,13 @@ class ServiciosImportados extends Component
     }*/
     public function mount()
     {
-        $this->loadData();
+       // $this->loadData();
     }
 
     public function loadData()
     {
         // Carga la lista de materiales desde la base de datos
-        $this->tipoMaterialList = Importados::all();
+        $tipoMaterialList = Importados::where("id","!=",0)->paginate(10);
     }
     public function create()
     {
@@ -139,9 +147,9 @@ class ServiciosImportados extends Component
         $this->resetValidation();
     }
 
-    public function edit($id)
+    public function edit(Importados $servicio)
 {
-    $servicio = Importados::findOrFail($id);
+    //$servicio = Importados::findOrFail($imp->id);
     $this->editing = true;
     $this->servicioId = $servicio->id;
     $this->placa = $servicio->placa;
@@ -223,7 +231,7 @@ class ServiciosImportados extends Component
     $this->isViewing = false;
     }
 
-
+    /*
     public function updatingSearch()
     {
     $this->tipoMaterialList = Importados::where(function ($query) {
@@ -235,12 +243,15 @@ class ServiciosImportados extends Component
 
     $this->foundRecords = count($this->tipoMaterialList) > 0;
     }
+    */
 
+    /*
     public function clearSearch()
     {
         $this->search = '';
         $this->tipoMaterialList = Importados::all();
         $this->foundRecords = true;
     }
+    */
 
 }

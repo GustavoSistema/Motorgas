@@ -3,7 +3,7 @@
 use App\Http\Livewire\Tipomaterial;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ServiciosImportados;
-
+use App\Http\Livewire\Talleres;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +34,8 @@ Route::middleware([
 
 Route::get('/tipomaterial', Tipomaterial::class)->name('tipomaterial');
 Route::get('/servicios_importados', ServiciosImportados::class)->name('servicios_importados');
+Route::get('/talleres', Talleres::class)->name('talleres');
+
 
 
 

@@ -1,8 +1,7 @@
-@extends('dashboard')
-@section('content')
+
 
 <div>
-    @livewire('menu-component')
+    
 
     <div class="row mb-5">
         <div class="col-md-6 text-center">
@@ -103,4 +102,3 @@
         </tbody>
     </table>
 </div>
-@endsection

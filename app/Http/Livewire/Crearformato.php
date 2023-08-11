@@ -20,16 +20,16 @@ class Crearformato extends Component
         return view('livewire.crearformato');
     }
 
-    public function openModal()
+    /*public function openModal()
     {
         $this->resetForm();
         $this->open = true;
-    }
+    }*/
 
-    public function closeModal()
+    /*public function closeModal()
     {
         $this->open = false;
-    }
+    }*/
 
     public function crearFormato()
     {
