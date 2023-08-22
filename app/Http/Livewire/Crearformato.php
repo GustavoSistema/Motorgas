@@ -39,8 +39,12 @@ class Crearformato extends Component
             'descripcion' => $this->descripcion,
         ]);
 
-        $this->closeModal();
+        $this->emit('render');
+
+        /*$this->closeModal();*/
     }
+
+
     private function resetForm()
     {
         $this->descripcion = null;

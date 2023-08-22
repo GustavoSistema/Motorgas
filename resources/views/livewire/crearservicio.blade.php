@@ -15,46 +15,55 @@
             <x-jet-input wire:model="placa" type="text" class="w-full" />
             <x-jet-input-error for="placa" />
             </div>
+
             <div class="mb-4">
             <x-jet-label value="Serie:" />
             <x-jet-input wire:model="serie" type="text" class="w-full" />
             <x-jet-input-error for="serie" />
             </div>
+
             <div class="mb-4">
             <x-jet-label value="Certificador:" />
             <x-jet-input wire:model="certificador" type="text" class="w-full" />
             <x-jet-input-error for="certificador" />
             </div>
+
             <div class="mb-4">
             <x-jet-label value="Taller:" />
             <x-jet-input wire:model="taller" type="text" class="w-full" />
             <x-jet-input-error for="taller" />
             </div>
+
             <div class="mb-4">
             <x-jet-label value="Precio:" />
             <x-jet-input wire:model="precio" type="number" step="0.01" class="w-full" />
             <x-jet-input-error for="precio" />
             </div>
+            
             <div class="mb-4">
             <x-jet-label value="Fecha:" />
             <x-jet-input wire:model="fecha" type="date" class="w-full" />
             <x-jet-input-error for="fecha" />
             </div>
+
             <div class="mb-4">
             <x-jet-label value="Externo:" />
             <x-jet-input wire:model="externo" type="checkbox" class="w-full" />
             <x-jet-input-error for="externo" />
             </div>
+
             <div class="mb-4">
             <x-jet-label value="Tipo de Servicio:" />
             <x-jet-input wire:model="tipoServicio" type="text" class="w-full" />
             <x-jet-input-error for="tipoServicio" />
             </div>
+
             <div class="mb-4">
             <x-jet-label value="Estado:" />
             <x-jet-input wire:model="estado" type="text" class="w-full" />
             <x-jet-input-error for="estado" />
             </div>
+            
             <div class="mb-4">
             <x-jet-label value="Pagado:" />
             <x-jet-input wire:model="pagado" type="checkbox" class="w-full" />

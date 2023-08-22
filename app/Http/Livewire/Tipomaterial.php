@@ -10,9 +10,11 @@ class TipoMaterial extends Component
     public $descripcion;
     public $tipoMaterialId;
     public $editing = false;
-    public $tipoMaterialList = [];
-    public $search = '';    
+    //public $tipoMaterialList = [];
+    public $search = '';
     public $foundRecords = true;
+
+    protected $listeners = ['render' => 'render'];
 
 
     public function render()
@@ -22,16 +24,16 @@ class TipoMaterial extends Component
     }
 
 
-    public function mount()
+    /*public function mount()
     {
         $this->loadData();
-    }
+    }*/
 
 
-    public function loadData()
+    /*public function loadData()
     {
         $this->tipoMaterialList = Material::all();
-    }
+    }*/
 
 
     public function create()
@@ -40,7 +42,7 @@ class TipoMaterial extends Component
         $this->tipoMaterialId = null;
         $this->descripcion = null;
 
-        $this->updateOrCreate();   
+        $this->updateOrCreate();
     }
 
 
@@ -114,14 +116,14 @@ class TipoMaterial extends Component
 
 
     public function view($id)
-{
-    $tipoMaterial = Material::findOrFail($id);
-    $this->tipoMaterialId = $tipoMaterial->id;
-    $this->descripcion = $tipoMaterial->descripcion;
-}
+    {
+        $tipoMaterial = Material::findOrFail($id);
+        $this->tipoMaterialId = $tipoMaterial->id;
+        $this->descripcion = $tipoMaterial->descripcion;
+    }
 
 
-public function updatingSearch()
+    /*public function updatingSearch()
     {
         $this->tipoMaterialList = Material::where('descripcion', 'LIKE', '%' . $this->search . '%')->get();
 
@@ -134,8 +136,5 @@ public function updatingSearch()
         $this->search = '';
         $this->tipoMaterialList = Material::all();
         $this->foundRecords = true;
-    }
-
-    
-
+    }*/
 }
