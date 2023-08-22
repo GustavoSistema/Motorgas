@@ -35,14 +35,26 @@
 
             <div class="mb-4">
                 <x-jet-label value="rutaLogo:" />
-                <x-jet-input wire:model="rutaLogo" type="text" class="w-full" />
+                <x-jet-input wire:model="rutaLogo" type="file" class="w-full" />
                 <x-jet-input-error for="rutaLogo" />
+            </div>
+
+            <div class="mb-4" style="max-height: 5cm; overflow: hidden;">
+                @if ($rutaLogo)
+                    <img src="{{ $rutaLogo->temporaryUrl() }}" alt="Logo Seleccionada" class="max-w-full h-auto" />
+                @endif
             </div>
 
             <div class="mb-4">
                 <x-jet-label value="rutaFirma:" />
-                <x-jet-input wire:model="rutaFirma" type="text" class="w-full" />
+                <x-jet-input wire:model="rutaFirma" type="file" class="w-full" />
                 <x-jet-input-error for="rutaFirma" />
+            </div>
+
+            <div class="mb-4" style="max-height: 5cm; overflow: hidden;">
+                @if ($rutaFirma)
+                    <img src="{{ $rutaFirma->temporaryUrl() }}" alt="Firma Seleccionada" class="max-w-full h-auto" />
+                @endif
             </div>
 
             <div class="mb-4">
@@ -50,7 +62,6 @@
                 <x-jet-input wire:model="ruc" type="text" class="w-full" />
                 <x-jet-input-error for="ruc" />
             </div>
-
         </x-slot>
 
 
@@ -62,7 +73,7 @@
                 class="bg-indigo-500 text-white py-2 px-4 rounded-md shadow-md">
                 Guardar
             </x-jet-button>
-
         </x-slot>
     </x-jet-dialog-modal>
+
 </div>
