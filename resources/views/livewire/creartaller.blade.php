@@ -10,31 +10,31 @@
 
         <x-slot name="content">
             <div class="mb-4">
-                <x-jet-label value="nombre:" />
+                <x-jet-label value="Nombre:" />
                 <x-jet-input wire:model="nombre" type="text" class="w-full" />
                 <x-jet-input-error for="nombre" />
             </div>
 
             <div class="mb-4">
-                <x-jet-label value="direccion:" />
+                <x-jet-label value="Direccion:" />
                 <x-jet-input wire:model="direccion" type="text" class="w-full" />
                 <x-jet-input-error for="direccion" />
             </div>
 
             <div class="mb-4">
-                <x-jet-label value="representante:" />
+                <x-jet-label value="Representante:" />
                 <x-jet-input wire:model="representante" type="text" class="w-full" />
                 <x-jet-input-error for="representante" />
             </div>
 
             <div class="mb-4">
-                <x-jet-label value="idDistrito:" />
+                <x-jet-label value="Distrito:" />
                 <x-jet-input wire:model="idDistrito" type="text" class="w-full" />
                 <x-jet-input-error for="idDistrito" />
             </div>
 
             <div class="mb-4">
-                <x-jet-label value="rutaLogo:" />
+                <x-jet-label value="Logo:" />
                 <x-jet-input wire:model="rutaLogo" type="file" class="w-full" />
                 <x-jet-input-error for="rutaLogo" />
             </div>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="mb-4">
-                <x-jet-label value="rutaFirma:" />
+                <x-jet-label value="Firma:" />
                 <x-jet-input wire:model="rutaFirma" type="file" class="w-full" />
                 <x-jet-input-error for="rutaFirma" />
             </div>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="mb-4">
-                <x-jet-label value="ruc:" />
+                <x-jet-label value="RUC:" />
                 <x-jet-input wire:model="ruc" type="text" class="w-full" />
                 <x-jet-input-error for="ruc" />
             </div>
@@ -66,7 +66,7 @@
 
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('open',false)" class="mx-2">
+            <x-jet-secondary-button wire:click="resetForm" class="mx-2">
                 Cancelar
             </x-jet-secondary-button>
             <x-jet-button wire:click="crearTaller" wire:loading.attr="disabled" wire:target="crearTaller"

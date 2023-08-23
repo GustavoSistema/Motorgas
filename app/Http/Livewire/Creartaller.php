@@ -58,7 +58,7 @@ class Creartaller extends Component
             'ruc' => $this->ruc,
         ]);
 
-        $this->reset(['open', 'nombre', 'direccion', 'representante', 'idDistrito', 'rutaLogo', 'rutaFirma', 'ruc']);
+        $this->reset(['open', 'nombre', 'direccion', 'representante', 'idDistrito', 'rutaLogo', 'rutaFirma','ruc']);
 
         $this->emitTo('talleres','render');
 
@@ -67,8 +67,11 @@ class Creartaller extends Component
         
     }
 
-    private function resetForm()
+    
+
+    public function resetForm()
     {
+        $this->open = false;
         $this->nombre = null;
         $this->direccion = null;
         $this->representante = null;
