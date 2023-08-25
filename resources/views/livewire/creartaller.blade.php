@@ -35,7 +35,7 @@
 
             <div class="mb-4">
                 <x-jet-label value="Logo:" />
-                <x-jet-input wire:model="rutaLogo" type="file" class="w-full" />
+                <x-jet-input wire:model="rutaLogo" type="file" class="w-full" id="{{$borralogo}}" />
                 <x-jet-input-error for="rutaLogo" />
             </div>
 
@@ -47,7 +47,7 @@
 
             <div class="mb-4">
                 <x-jet-label value="Firma:" />
-                <x-jet-input wire:model="rutaFirma" type="file" class="w-full" />
+                <x-jet-input wire:model="rutaFirma" type="file" class="w-full" id="{{$borrafirma}}" />
                 <x-jet-input-error for="rutaFirma" />
             </div>
 

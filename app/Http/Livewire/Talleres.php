@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 
 class Talleres extends Component
 {
-    
+
     public $nombre, $direccion, $ruc, $representante, $idDistrito, $rutaLogo, $rutaFirma;
     public $search = "";
     use WithPagination;
@@ -33,7 +33,6 @@ class Talleres extends Component
     {
         //$this->talleres = Taller::all();
     }
-
     
     protected $rules=[        
         'seleccion'=>'required|numeric|min:1',  

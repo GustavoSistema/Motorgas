@@ -18,9 +18,11 @@ class Creartaller extends Component
     public $idDistrito;
     public $rutaLogo;
     public $rutaFirma;
+    public $borralogo;
+    public $borrafirma;
     use WithFileUploads;
 
-       
+    
 
     protected $rules = [
         'nombre'=> 'required' ,
@@ -33,6 +35,10 @@ class Creartaller extends Component
         
     ];
 
+    public function mount(){
+        $this -> borralogo = rand();
+        $this -> borrafirma = rand();
+    }
 
     public function render()
     {
@@ -48,17 +54,23 @@ class Creartaller extends Component
     {
         $this->validate();
 
+        $rutaLogo = $this->rutaLogo->store('taller');
+        $rutaFirma = $this->rutaFirma->store('taller');
+
         Taller::create([
             'nombre' => $this->nombre,
             'direccion' => $this->direccion,
             'representante' => $this->representante,
             'idDistrito' => $this->idDistrito,
-            'rutaLogo' => $this->rutaLogo,
-            'rutaFirma' => $this->rutaFirma,
+            'rutaLogo' => $rutaLogo,
+            'rutaFirma' => $rutaFirma,
             'ruc' => $this->ruc,
         ]);
 
         $this->reset(['open', 'nombre', 'direccion', 'representante', 'idDistrito', 'rutaLogo', 'rutaFirma','ruc']);
+
+        $this->borralogo = rand();
+        $this->borrafirma = rand();
 
         $this->emitTo('talleres','render');
 

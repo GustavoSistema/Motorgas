@@ -1,10 +1,15 @@
+
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-[x-cloak] {
-    display: none;
-}
 
+.filepond--panel-root {
+    background-color:rgb(218, 225, 253); 
+    border: 2px dashed rgb(158, 136, 255);   
+}
 
 

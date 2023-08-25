@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    
+
 
     <div class="card-body">
         @if (isset($talleres))
@@ -60,22 +60,9 @@
                             <td class="border px-4 py-2 text-center">{{ $taller['idDistrito'] }}</td>
                             <td class="border px-4 py-2 text-center">{{ $taller['rutaLogo'] }}</td>
                             <td class="border px-4 py-2 text-center">{{ $taller['rutaFirma'] }}</td>
-                            <td class="border px-4 py-2 text-center">
-                                <div class="flex justify-center">
-                                    <button wire:click="edit({{ $taller['id'] }})"
-                                        class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md shadow-md mr-2">
-                                        Editar
-                                    </button>
-                                    <button wire:click="view({{ $taller['id'] }})"
-                                        class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-md shadow-md mr-2">
-                                        Ver
-                                    </button>
-                                    <button wire:click="delete({{ $taller['id'] }})"
-                                        class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md shadow-md mr-2">
-                                        Eliminar
-                                    </button>
-                                </div>
-                            </td>
+                                                            
+                             @livewire('edit-taller', ['taller' => $taller], key($taller->id))                               
+                            
                         </tr>
                     @endforeach
 
@@ -89,3 +76,4 @@
 
 
     </div>
+</div>
